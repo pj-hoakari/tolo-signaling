@@ -11,6 +11,8 @@ type Edge struct {
 	LastSeenAt time.Time
 }
 
+//go:generate go tool mockgen -source=signaling.go -destination=signalingmock/repository.go -package=signalingmock
+
 type Repository interface {
 	ListAliveEdges(ctx context.Context, cutoff time.Time) ([]Edge, error)
 	EdgeExists(ctx context.Context, edgeID string) (bool, error)
