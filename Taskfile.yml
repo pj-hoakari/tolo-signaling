@@ -41,3 +41,17 @@ tasks:
             - buf.gen.client.yaml
         generates:
             - "clients/connect-es/gen/**/*"
+
+    mock:
+        desc: Gomockでモックを生成する
+        cmds:
+            - go generate ./...
+        sources:
+            - "internal/signaling/signaling.go"
+        generates:
+            - "internal/signaling/signalingmock/repository.go"
+
+    test:
+        desc: Go の全テストを実行する
+        cmds:
+            - go test ./...
