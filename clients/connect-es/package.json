@@ -1,0 +1,31 @@
+{
+	"name": "@pj-hoakari/tolo-signaling-client-es",
+	"version": "0.1.0",
+	"description": "tolo-signaling の Connect クライアント（connect-es 生成コード）",
+	"license": "UNLICENSED",
+	"type": "module",
+	"files": [
+		"gen"
+	],
+	"exports": {
+		"./*": {
+			"types": "./gen/*.d.ts",
+			"default": "./gen/*.js"
+		}
+	},
+	"dependencies": {
+		"@bufbuild/protobuf": "^2.12.0"
+	},
+	"peerDependencies": {
+		"@connectrpc/connect": "^2.1.1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com",
+		"access": "restricted"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pj-hoakari/tolo-signaling.git",
+		"directory": "clients/connect-es"
+	}
+}

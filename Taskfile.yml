@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+    proto:
+        desc: proto を lint して全実装の生成コードを更新する
+        cmds:
+            - task: proto:lint
+            - task: proto:gen
+
+    proto:lint:
+        desc: proto 定義を lint する
+        cmds:
+            - buf lint
+
+    proto:gen:
+        desc: proto から全実装の生成コードを更新する
+        cmds:
+            - task: proto:gen:server
+            - task: proto:gen:client
+
+    proto:gen:server:
+        desc: proto から Go サーバー実装（connect-go）の生成コードを更新する
+        cmds:
+            - buf generate --template buf.gen.server.yaml
+        sources:
+            - "proto/**/*.proto"
+            - buf.yaml
+            - buf.gen.server.yaml
+        generates:
+            - "gen/**/*"
+
+    proto:gen:client:
+        desc: proto から TypeScript クライアント実装の生成コードを更新する
+        cmds:
+            - buf generate --template buf.gen.client.yaml
+        sources:
+            - "proto/**/*.proto"
+            - buf.yaml
+            - buf.gen.client.yaml
+        generates:
+            - "clients/connect-es/gen/**/*"

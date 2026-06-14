@@ -27,6 +27,18 @@ go.work.sum
 # env file
 .env
 
+# go-task cache
+.task/
+
+# Client packages
+/clients/**
+!/clients/**/
+
+!/clients/**/package.json
+
+# npm（クライアントパッケージ）
+node_modules/
+
 # Editor/IDE
 # .idea/
 # .vscode/
